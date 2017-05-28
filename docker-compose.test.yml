@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  sut:
+    build: .
+    image: nouchka/sqlite3:latest
+    entrypoint: bash -c "sqlite3 version"
