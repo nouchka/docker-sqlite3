@@ -26,7 +26,7 @@ or use with docker compose:
 
 # Todo
 
-* Migrate docker-compose file format to version 3
+* 
 
 # Donate
 
