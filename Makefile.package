@@ -1,0 +1,32 @@
+NAME=$(DOCKER_NAMESPACE)-$(DOCKER_IMAGE)
+DESCRIPTION=$(DOCKER_IMAGE) executable with docker in a package
+URL=https://github.com/nouchka/docker-$(DOCKER_IMAGE)
+VENDOR=katagena
+MAINTAINER=Jean-Avit Promis <docker@katagena.com>
+LICENSE=Apache License 2.0
+
+prefix = /usr/local
+
+build-deb: deb
+	test ! -z $(PACKAGE_VERSION)
+	mkdir -p build/usr/sbin/
+	cp -Rf bin/* build/usr/sbin/
+	rm -f $(NAME)_$(PACKAGE_VERSION).$(TRAVIS_BUILD_NUMBER)_amd64.deb
+	fpm -t deb -s dir -n $(NAME) -v $(PACKAGE_VERSION).$(TRAVIS_BUILD_NUMBER) --description "$(DESCRIPTION)" -C build \
+		--vendor "$(VENDOR)" -m "$(MAINTAINER)" --license "$(LICENSE)" --url $(URL) --deb-no-default-config-files \
+		-d docker-ce .
+	rm -rf build/
+
+push-deb: build-deb
+	package_cloud push nouchka/home/ubuntu/xenial $(NAME)_*.deb
+
+deb:
+	
+
+run:
+	./bin/$(DOCKER_IMAGE)
+
+test: build run
+
+install:
+	install bin/$(DOCKER_IMAGE) $(prefix)/bin

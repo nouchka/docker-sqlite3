@@ -1,0 +1,50 @@
+DOCKER_NAMESPACE=nouchka
+.DEFAULT_GOAL := build
+
+.PHONY: build-latest
+build-latest:
+	$(MAKE) -s build-version VERSION=latest
+
+.PHONY: build-beta
+build-beta:
+	$(MAKE) -s build-version VERSION=beta
+
+.PHONY: build-version
+build-version:
+	test ! -f ./hooks/build || chmod +x ./hooks/build
+	test ! -f ./hooks/build || DOCKER_TAG=$(VERSION) IMAGE_NAME=$(DOCKER_NAMESPACE)/$(DOCKER_IMAGE):$(VERSION) ./hooks/build
+	test -f ./hooks/build || docker build -t $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE) .
+
+.PHONY: build
+build: build-latest
+	$(foreach version,$(VERSIONS), $(MAKE) -s build-version VERSION=$(version);)
+
+.PHONY: check
+check:
+	$(MAKE) -s check-version VERSION=latest
+	$(foreach version,$(VERSIONS), $(MAKE) -s check-version VERSION=$(version);)
+
+.PHONY: update-version
+update-version:
+	touch VERSION
+	rm VERSION
+	$(MAKE) -s check >> VERSION
+
+.PHONY: update-dockerfile
+update-dockerfile: update-version
+	sed -i '/MINOR_TAGS/c\## MINOR_TAGS=$(shell cat VERSION)' Dockerfile
+
+.PHONY: test
+test:
+	docker-compose -f docker-compose.test.yml up
+
+hadolint:
+	docker run --rm -i hadolint/hadolint < Dockerfile 2>/dev/null; true
+
+.PHONY: clean
+clean: 
+	$(foreach version,$(VERSIONS), $(MAKE) -s clean-version VERSION=$(version);)
+
+.PHONY: clean-version
+clean-version:
+	docker rmi $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE):$(VERSION)

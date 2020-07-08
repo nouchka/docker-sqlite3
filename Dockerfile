@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stable-slim
 MAINTAINER Jean-Avit Promis "docker@katagena.com"
 LABEL org.label-schema.vcs-url="https://github.com/nouchka/docker-sqlite3"
 LABEL version="latest"
