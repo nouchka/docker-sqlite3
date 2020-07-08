@@ -6,7 +6,6 @@ before_install:
   - gem install fpm package_cloud
 
 script:
-  - make test
   - if [ "$TRAVIS_BRANCH" = "master" ]; then make push-deb; fi
 
 notifications:
