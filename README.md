@@ -1,15 +1,16 @@
 # docker-sqlite3
 
-[![Docker Hub repository](http://dockeri.co/image/nouchka/sqlite3)](https://registry.hub.docker.com/u/nouchka/sqlite3/)
-
-[![](https://images.microbadger.com/badges/image/nouchka/sqlite3.svg)](https://microbadger.com/images/nouchka/sqlite3 "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/nouchka/sqlite3.svg)](https://microbadger.com/images/nouchka/sqlite3 "Get your own version badge on microbadger.com")
+[![Docker pull](https://img.shields.io/docker/pulls/nouchka/sqlite3)](https://hub.docker.com/r/nouchka/sqlite3/)
+[![Docker stars](https://img.shields.io/docker/stars/nouchka/sqlite3)](https://hub.docker.com/r/nouchka/sqlite3/)
 [![Docker Automated buil](https://img.shields.io/docker/automated/nouchka/sqlite3.svg)](https://hub.docker.com/r/nouchka/sqlite3/)
-[![Build Status](https://travis-ci.org/nouchka/docker-sqlite3.svg?branch=master)](https://travis-ci.org/nouchka/docker-sqlite3)
+[![Build Status](https://img.shields.io/travis/nouchka/docker-sqlite3/master)](https://travis-ci.org/nouchka/docker-sqlite3)
+[![Docker size](https://img.shields.io/docker/image-size/nouchka/sqlite3/latest)](https://hub.docker.com/r/nouchka/sqlite3/)
+[![Docker layers](https://img.shields.io/microbadger/layers/nouchka/sqlite3/latest)](https://hub.docker.com/r/nouchka/sqlite3/)
+[![Codacy grade](https://img.shields.io/codacy/grade/0ac0a25def124b6da746d4701b9687ac)](https://travis-ci.org/nouchka/docker-sqlite3)
 
 # Versions
 
-* latest (based on jessie repository)
+* latest (based on debian:stable)
 
 # Image
 
