@@ -6,7 +6,7 @@
 [![Build Status](https://img.shields.io/travis/nouchka/docker-sqlite3/master)](https://travis-ci.org/nouchka/docker-sqlite3)
 [![Docker size](https://img.shields.io/docker/image-size/nouchka/sqlite3/latest)](https://hub.docker.com/r/nouchka/sqlite3/)
 [![Docker layers](https://img.shields.io/microbadger/layers/nouchka/sqlite3/latest)](https://hub.docker.com/r/nouchka/sqlite3/)
-[![Codacy grade](https://img.shields.io/codacy/grade/0ac0a25def124b6da746d4701b9687ac)](https://travis-ci.org/nouchka/docker-sqlite3)
+[![Codacy grade](https://img.shields.io/codacy/grade/0ac0a25def124b6da746d4701b9687ac)](https://hub.docker.com/r/nouchka/sqlite3/)
 
 # Versions
 
@@ -27,8 +27,4 @@ or use with docker compose:
 
 # Todo
 
-* 
-
-# Donate
-
-Bitcoin Address: 15NVMBpZJTvkefwfsMAFA3YhyiJ5D2zd3R
+*
