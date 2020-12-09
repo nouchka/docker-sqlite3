@@ -16,14 +16,22 @@
 
 Install sqlite3 command line.  Use make install to setup the command.
 
+```bash
+docker pull nouchka/sqlite3
+```
+
+# Build
+
+```bash
+make build
+```
+
 # Use
 
-Use from command line:
 
-	docker run -it nouchka/sqlite3
-or use with docker compose:
-
-	docker-compose run sqlite3
+```bash
+docker-compose run sqlite3
+```
 
 # Todo
 
