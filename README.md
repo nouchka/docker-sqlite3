@@ -26,9 +26,19 @@ docker pull nouchka/sqlite3
 
 # Build
 
-```bash
-make build
-```
+You can create builds by using the provided `Makefile` like so:
+
+* `make build-latest`
+* `make build-beta`
+* `make build-version <version_number>`
+* `make build` - Default to latest build version. Also the **default if no arguments are supplied** to the `make` command.
+* `make check` - Checks the version of the docker image currently used.
+* `make update-version` - Update docker image version.
+* `make update-dockerfile` - Updates tag in `Dockerfile`.
+* `make test` - Brings up the test container using the `docker-compose.test.yml` file.
+* `make hadolint` - Formats the `Dockerfile` to use **Docker Inc.'s** best practices.
+* `make clean`
+* `make clean-version`
 
 ---
 
