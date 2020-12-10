@@ -19,14 +19,18 @@
 Install sqlite3 command line.  Use make install to setup the command.
 
 ```bash
-docker pull nouchka/sqlite3
+docker pull konkeydong/sqlite3
 ```
 
 ---
 
-# Build
+# Build / Make Commands
 
-You can create builds by using the provided `Makefile` like so:
+NOTE: You may want to change the username on `line 1` of `Makefile.docker` to your Docker Hub username:
+
+`DOCKER_NAMESPACE=<username>`
+
+The Following are a list of commands found in `Makefile.docker`.
 
 * `make build-latest`
 * `make build-beta`
@@ -39,6 +43,10 @@ You can create builds by using the provided `Makefile` like so:
 * `make hadolint` - Formats the `Dockerfile` to use **Docker Inc.'s** best practices.
 * `make clean`
 * `make clean-version`
+* `make prune` - Cleanup all dangling images. Same as running `docker system prune -a`.
+* `make push` - Push docker image to **Docker Hub**.
+              - Remember to update the `DOCKER_NAMESPACE=<username>` to your username before pushing.
+              - Please ensure that you have a public repository such as `{username}/sqlite3`
 
 ---
 
@@ -47,14 +55,6 @@ You can create builds by using the provided `Makefile` like so:
 
 ```bash
 docker-compose run sqlite3
-```
-
----
-
-# Cleanup Dangling Docker Images
-
-```bash
-docker system prune -a
 ```
 
 ---

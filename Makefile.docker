@@ -1,4 +1,4 @@
-DOCKER_NAMESPACE=nouchka
+DOCKER_NAMESPACE=konkeydong
 .DEFAULT_GOAL := build
 
 .PHONY: build-latest
@@ -42,9 +42,19 @@ hadolint:
 	docker run --rm -i hadolint/hadolint < Dockerfile 2>/dev/null; true
 
 .PHONY: clean
-clean: 
+clean:
 	$(foreach version,$(VERSIONS), $(MAKE) -s clean-version VERSION=$(version);)
 
 .PHONY: clean-version
 clean-version:
 	docker rmi $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE):$(VERSION)
+
+.PHONY: prune
+prune:
+	docker system prune -a
+
+.PHONY: push
+push:
+	docker login
+	docker push ${DOCKER_NAMESPACE}/${DOCKER_IMAGE}
+
