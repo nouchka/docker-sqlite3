@@ -12,6 +12,8 @@
 
 * latest (based on debian:stable)
 
+---
+
 # Image
 
 Install sqlite3 command line.  Use make install to setup the command.
@@ -20,11 +22,15 @@ Install sqlite3 command line.  Use make install to setup the command.
 docker pull nouchka/sqlite3
 ```
 
+---
+
 # Build
 
 ```bash
 make build
 ```
+
+---
 
 # Use
 
@@ -33,6 +39,13 @@ make build
 docker-compose run sqlite3
 ```
 
-# Todo
+---
 
-*
+# Cleanup Dangling Docker Images
+
+```bash
+docker system prune -a
+```
+
+---
+
