@@ -19,6 +19,25 @@ build-version:
 build: build-latest
 	$(foreach version,$(VERSIONS), $(MAKE) -s build-version VERSION=$(version);)
 
+.PHONY: push-latest
+push-latest:
+	$(MAKE) -s push-version VERSION=latest
+
+.PHONY: push-beta
+push-beta:
+	$(MAKE) -s push-version VERSION=beta
+
+.PHONY: push-version
+push-version:
+	docker push $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE):$(VERSION)
+
+.PHONY: push-versions
+push-versions:
+	$(foreach version,$(VERSIONS), $(MAKE) -s push-version VERSION=$(version);)
+
+.PHONY: push
+push: push-versions push-latest
+
 .PHONY: check
 check:
 	$(MAKE) -s check-version VERSION=latest

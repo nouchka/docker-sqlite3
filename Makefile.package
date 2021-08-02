@@ -26,7 +26,7 @@ deb:
 run:
 	./bin/$(DOCKER_IMAGE)
 
-test: build run
+test-package: build run
 
 install:
 	install bin/$(DOCKER_IMAGE) $(prefix)/bin
