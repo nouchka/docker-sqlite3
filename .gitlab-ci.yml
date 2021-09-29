@@ -1,0 +1,5 @@
+include:
+  - project: 'katagena/projects'
+    file: 'playbooks/roles/templating/templates/generic/gitlab-ci.docker-multiple-build.yml'
+  - project: 'katagena/projects'
+    file: 'playbooks/roles/templating/templates/generic/gitlab-ci.debpackage.yml'
