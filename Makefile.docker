@@ -13,7 +13,11 @@ build-beta:
 build-version:
 	test ! -f ./hooks/build || chmod +x ./hooks/build
 	test ! -f ./hooks/build || DOCKER_TAG=$(VERSION) IMAGE_NAME=$(DOCKER_NAMESPACE)/$(DOCKER_IMAGE):$(VERSION) ./hooks/build
-	test -f ./hooks/build || docker build -t $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE) .
+ifeq ($(VERSION),latest)
+	test -f ./hooks/build || docker build -t $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE):$(VERSION) --build-arg=DOCKER_TAG=$(VERSION) .
+else
+	test -f ./hooks/build || docker build -t $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE):$(VERSION) --build-arg=DOCKER_TAG=$(VERSION) --build-arg=VERSION=$(VERSION) .
+endif
 
 .PHONY: build
 build: build-latest
@@ -52,6 +56,7 @@ update-version:
 .PHONY: update-dockerfile
 update-dockerfile: update-version
 	sed -i '/MINOR_TAGS/c\## MINOR_TAGS=$(shell cat VERSION)' Dockerfile
+	sed -i '/LATEST_RELEASE/c\## LATEST_RELEASE=$(shell make -s check-version VERSION=latest)' Dockerfile
 
 .PHONY: test
 test:
